@@ -1,0 +1,27 @@
+{% load static %}
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Envision - AI Image Enhancement">
+        <meta name="keywords" content="Envision, AI Image Enhancement">
+        <title>
+            {% block meta_title %}
+                Envision - AI Image Enhancement
+            {% endblock meta_title %}
+        </title> {% tailwind_css %}
+    </head>
+    <body class="bg-white dark:bg-gray-900">
+        {% include "extra/navbar.html" %}
+        <main id="main-content" class="min-h-screen">
+            {% block body %}
+            {% endblock body %}
+        </main>
+        <footer>
+            {% block footer %}
+            {% endblock footer %}
+        </footer>
+    </body>
+</html>
