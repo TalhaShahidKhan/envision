@@ -24,7 +24,7 @@ from home.views import HomePageView
 
 urlpatterns = [
     path("", HomePageView.as_view(), name="main"),
-    path("envision/admin/talhakhan/", admin.site.urls),
+    path("talhakhan/", admin.site.urls),
     path("home/", include("home.urls")),
     path("users/", include("users.urls")),
     path("scale/", include("dj_cloudinary.urls", namespace="scale")),

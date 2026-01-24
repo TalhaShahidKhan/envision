@@ -5,7 +5,12 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.contrib.auth.views import PasswordResetConfirmView, PasswordResetView
+from django.contrib.auth.views import (
+    PasswordChangeDoneView,
+    PasswordChangeView,
+    PasswordResetConfirmView,
+    PasswordResetView,
+)
 from django.core.exceptions import ValidationError
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render
@@ -35,6 +40,15 @@ class CustomPasswordResetView(PasswordResetView):
 
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     success_url = reverse_lazy("users:password_reset_complete")
+
+
+class CustomPasswordChangeView(PasswordChangeView):
+    template_name = "registration/password_change_form.html"
+    success_url = reverse_lazy("users:password_change_done")
+
+
+class CustomPasswordChangeDoneView(PasswordChangeDoneView):
+    template_name = "registration/password_change_done.html"
 
 
 class SignupView(CreateView):
