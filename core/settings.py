@@ -27,6 +27,7 @@ env = environ.Env(
     DJANGO_SUPERUSER_USERNAME=(str, None),
     DJANGO_SUPERUSER_EMAIL=(str, None),
     DJANGO_SUPERUSER_PASSWORD=(str, None),
+    DATABASE_URL=(str, None),
 )
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -229,6 +230,15 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 CLOUDINARY_CLOUD_NAME = env("CLOUDINARY_CLOUD_NAME")
 CLOUDINARY_API_KEY = env("CLOUDINARY_API_KEY")
 CLOUDINARY_API_SECRET = env("CLOUDINARY_API_SECRET")
+
+import cloudinary
+
+cloudinary.config(
+    cloud_name=CLOUDINARY_CLOUD_NAME,
+    api_key=CLOUDINARY_API_KEY,
+    api_secret=CLOUDINARY_API_SECRET,
+    secure=True,
+)
 
 
 # Paddle settings

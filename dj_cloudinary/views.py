@@ -17,17 +17,6 @@ from .models import Image
 User = get_user_model()
 
 
-def get_cloudinary_config():
-    # Configure Cloudinary once
-    cloudinary_init = cloudinary.config(
-        cloud_name=settings.CLOUDINARY_CLOUD_NAME,
-        api_key=settings.CLOUDINARY_API_KEY,
-        api_secret=settings.CLOUDINARY_API_SECRET,
-        secure=True,
-    )
-    return cloudinary_init
-
-
 class ImageUpscaleView(LoginRequiredMixin, TemplateView):
     login_url = "/users/login/"
     redirect_field_name = "next"
@@ -100,14 +89,6 @@ def htmx_upload_image_view(request):
             return response
 
     try:
-        cloudinary_init = get_cloudinary_config()
-        if not cloudinary_init:
-            return render(
-                request,
-                "extra/upload_image.html",
-                context={"error": "Cloudinary configuration failed"},
-            )
-
         # Generate unique ID and upload
         public_id = str(uuid.uuid4())
         result = cloudinary.uploader.upload(image_file, public_id=public_id)

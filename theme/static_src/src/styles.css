@@ -9,3 +9,23 @@
   * the scope of this path.
   */
 @source "../../../**/*.{html,py,js}";
+
+@theme {
+  --font-sans:
+    "Ubuntu", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --animate-fade-in-up: fade-in-up 0.8s ease-out forwards;
+
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
