@@ -15,6 +15,35 @@
         .delay-200ms {
             animation-delay: 0.2s;
         }
+
+        .comparison-slider {
+            --slider-pos: 50%;
+        }
+
+        .image-before {
+            clip-path: polygon(0 0, var(--slider-pos) 0, var(--slider-pos) 100%, 0 100%);
+        }
+
+        /* Range input styles to make it invisible but functional */
+        .slider-input {
+            appearance: none;
+            background: transparent;
+            cursor: ew-resize;
+        }
+
+        .slider-input::-webkit-slider-thumb {
+            appearance: none;
+            height: 100%;
+            width: 4px;
+            background: transparent;
+        }
+
+        .slider-input::-moz-range-thumb {
+            appearance: none;
+            height: 100%;
+            width: 4px;
+            background: transparent;
+        }
     </style>
 {% endblock extra_head %}
 {% block body %}
@@ -63,32 +92,34 @@
                         <div class="absolute -inset-4 bg-linear-to-r from-blue-600 to-indigo-600 rounded-[2.5rem] blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500">
                         </div>
                         <!-- Main Preview Container -->
-                        <div class="relative bg-gray-50 dark:bg-gray-800 rounded-4xl p-2 border border-gray-100 dark:border-gray-700 shadow-2xl overflow-hidden">
-                            <div class="relative aspect-square rounded-3xl overflow-hidden group-hover:shadow-inner transition-shadow duration-500">
-                                <div class="flex h-full">
-                                    <div class="w-1/2 relative">
-                                        <img src="{% static 'images/comparison-before.png' %}"
-                                             alt="Before"
-                                             width="400"
-                                             height="400"
-                                             class="w-full h-full object-cover">
-                                        <div class="absolute top-4 left-4 px-3 py-1 bg-black/40 backdrop-blur-md rounded-lg text-white text-[10px] font-bold uppercase tracking-widest">
-                                            Original
-                                        </div>
-                                    </div>
-                                    <div class="w-1/2 relative bg-blue-50 dark:bg-blue-900/10">
-                                        <img src="{% static 'images/comparison-after.png' %}"
-                                             alt="After"
-                                             width="400"
-                                             height="400"
-                                             class="w-full h-full object-cover">
-                                        <div class="absolute top-4 right-4 px-3 py-1 bg-blue-600/80 backdrop-blur-md rounded-lg text-white text-[10px] font-bold uppercase tracking-widest">
-                                            Enhanced
-                                        </div>
+                        <div class="relative bg-gray-50 dark:bg-gray-800 rounded-4xl p-2 border border-gray-100 dark:border-gray-700 shadow-2xl overflow-hidden comparison-slider"
+                             id="hero-comparison">
+                            <div class="relative aspect-square rounded-3xl overflow-hidden group-hover:shadow-inner transition-shadow duration-500 select-none">
+                                <!-- After Image (Background) -->
+                                <div class="absolute inset-0 bg-blue-50 dark:bg-blue-900/10">
+                                    <img src="{% static 'images/comparison-after.png' %}"
+                                         alt="After"
+                                         width="600"
+                                         height="600"
+                                         class="w-full h-full object-cover">
+                                    <div class="absolute top-4 right-4 px-3 py-1 bg-blue-600/80 backdrop-blur-md rounded-lg text-white text-[10px] font-bold uppercase tracking-widest z-10">
+                                        Enhanced
                                     </div>
                                 </div>
-                                <!-- Comparison Slider -->
-                                <div class="absolute inset-y-0 left-1/2 w-0.5 bg-white shadow-xl z-20">
+                                <!-- Before Image (Foreground with Clip-path) -->
+                                <div class="absolute inset-0 image-before z-10 transition-all duration-75">
+                                    <img src="{% static 'images/comparison-before.png' %}"
+                                         alt="Before"
+                                         width="600"
+                                         height="600"
+                                         class="w-full h-full object-cover">
+                                    <div class="absolute top-4 left-4 px-3 py-1 bg-black/40 backdrop-blur-md rounded-lg text-white text-[10px] font-bold uppercase tracking-widest">
+                                        Original
+                                    </div>
+                                </div>
+                                <!-- Slider Controller Line & Button -->
+                                <div class="absolute inset-y-0 z-20 w-1 bg-white shadow-xl pointer-events-none"
+                                     style="left: var(--slider-pos)">
                                     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white dark:bg-gray-900 rounded-full shadow-2xl border-4 border-blue-600 flex items-center justify-center transform transition-transform duration-300 group-hover:scale-110">
                                         <svg class="w-5 h-5 text-blue-600"
                                              fill="none"
@@ -99,6 +130,14 @@
                                         </svg>
                                     </div>
                                 </div>
+                                <!-- Invisible Range Input -->
+                                <input type="range"
+                                       min="0"
+                                       max="100"
+                                       value="50"
+                                       class="absolute inset-0 w-full h-full opacity-0 z-30 slider-input"
+                                       id="comparison-range"
+                                       aria-label="Image comparison slider">
                             </div>
                         </div>
                     </div>
@@ -109,24 +148,24 @@
     <!-- Stats Section -->
     <div class="py-12 bg-gray-50 dark:bg-gray-800/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div>
-                    <div class="text-3xl font-bold text-gray-900 dark:text-white">50k+</div>
-                    <div class="text-sm text-gray-500 uppercase tracking-widest mt-1">Images Processed</div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center">
+                <div class="p-4 rounded-2xl bg-white dark:bg-gray-800 md:bg-transparent md:dark:bg-transparent shadow-sm md:shadow-none">
+                    <div class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">50k+</div>
+                    <div class="text-[10px] md:text-sm text-gray-500 uppercase tracking-widest mt-1">Images Processed</div>
                 </div>
-                <div>
-                    <div class="text-3xl font-bold text-gray-900 dark:text-white">4.9/5</div>
-                    <div class="text-sm text-gray-500 uppercase tracking-widest mt-1">User Rating</div>
+                <div class="p-4 rounded-2xl bg-white dark:bg-gray-800 md:bg-transparent md:dark:bg-transparent shadow-sm md:shadow-none">
+                    <div class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">4.9/5</div>
+                    <div class="text-[10px] md:text-sm text-gray-500 uppercase tracking-widest mt-1">User Rating</div>
                 </div>
-                <div>
-                    <div class="text-3xl font-bold text-gray-900 dark:text-white">100%</div>
-                    <div class="text-sm text-gray-500 uppercase tracking-widest mt-1">Privacy Focused</div>
+                <div class="p-4 rounded-2xl bg-white dark:bg-gray-800 md:bg-transparent md:dark:bg-transparent shadow-sm md:shadow-none">
+                    <div class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">100%</div>
+                    <div class="text-[10px] md:text-sm text-gray-500 uppercase tracking-widest mt-1">Privacy Focused</div>
                 </div>
-                <div>
-                    <div class="text-3xl font-bold text-gray-900 dark:text-white">
+                <div class="p-4 rounded-2xl bg-white dark:bg-gray-800 md:bg-transparent md:dark:bg-transparent shadow-sm md:shadow-none">
+                    <div class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
                         < 2s
                     </div>
-                    <div class="text-sm text-gray-500 uppercase tracking-widest mt-1">Avg. Processing</div>
+                    <div class="text-[10px] md:text-sm text-gray-500 uppercase tracking-widest mt-1">Avg. Processing</div>
                 </div>
             </div>
         </div>
@@ -209,3 +248,17 @@
         </div>
     </div>
 {% endblock body %}
+{% block extra_js %}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const range = document.getElementById('comparison-range');
+        const container = document.getElementById('hero-comparison');
+
+        if (range && container) {
+            range.addEventListener('input', function(e) {
+                container.style.setProperty('--slider-pos', `${e.target.value}%`);
+            });
+        }
+    });
+    </script>
+{% endblock extra_js %}

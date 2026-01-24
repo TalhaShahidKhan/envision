@@ -1,19 +1,30 @@
-# Envision - Next-Gen AI Image Studio
+<div align="center">
+  <img src="static/images/logo.png" alt="Envision Logo" width="120" height="120" style="border-radius: 20%;">
+  
+  # Envision
+  ### Next-Gen AI Image Studio
+  
+  [![Django](https://img.shields.io/badge/Django-6.0.1-092e20?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com/)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.x-38bdf8?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+  [![Cloudinary](https://img.shields.io/badge/Cloudinary-AI_Powered-3448c5?style=for-the-badge&logo=cloudinary&logoColor=white)](https://cloudinary.com/)
 
-Envision is a premium saas application designed for professional-grade image enhancement and manipulation. Powered by state-of-the-art AI neural networks via Cloudinary, Envision allows users to upscale, transform, and engineer their visual content with ease.
+**Envision** is a premium SaaS application designed for professional-grade image enhancement and manipulation. Powered by state-of-the-art AI neural networks, Envision allows you to upscale, transform, and engineer visual content with cinematic precision.
 
-![Envision Preview](https://res.cloudinary.com/dgpcfijvz/image/upload/v123456789/envision_preview.png)
+</div>
+
+---
 
 ## ✨ Features
 
-- **Ultra Upscaling**: Transform low-resolution images into crystal-clear 4K visuals.
-- **Background Studio**: Highly accurate background removal and extraction.
-- **Generative Fill**: Intelligently expand canvases or fill in missing image data.
-- **Object Replacement**: Swap elements in your photos using generative AI.
-- **Studio Dashboard**: Manage and track all your processed images in one place.
-- **Credit System**: Flexible pay-as-you-go credit management for AI processing.
-- **Paddle Integration**: Secure global payments and automated credit fulfillment.
-- **Adaptive UI**: Premium glassmorphic design system with full Dark Mode support.
+- 🖱️ **Interactive Comparison**: High-performance hero slider for "Before vs After" real-time visualization.
+- 🚀 **Ultra Upscaling**: Transform low-resolution images into crystal-clear 4K visuals.
+- 🖼️ **Background Studio**: Highly accurate background removal and extraction.
+- 🪄 **Generative Fill**: Intelligently expand canvases or fill in missing image data.
+- 📊 **Studio Dashboard**: Manage and track all your processed images in one place.
+- 💎 **Credit System**: Flexible pay-as-you-go credit management for AI processing.
+- 💳 **Paddle Integration**: Secure global payments and automated credit fulfillment.
+- 🔍 **SEO Optimized**: Fully optimized with OG tags, Twitter Cards, JSON-LD, and automated sitemaps.
+- 🌓 **Adaptive UI**: Premium glassmorphic design system with full Dark Mode support.
 
 ## 🛠️ Technology Stack
 
@@ -31,6 +42,8 @@ Envision is a premium saas application designed for professional-grade image enh
 - **Components**: [daisyUI 5.x](https://daisyui.com/)
 - **Typography**: Ubuntu (Google Fonts)
 - **Design Pattern**: Glassmorphism, premium gradients, and micro-animations.
+- **SEO & Social**: Meta Tags, Open Graph, Twitter Cards, and JSON-LD Structured Data.
+- **Assets**: Professional logo, custom favicons, and commercial video mockups.
 
 ## 📦 Project Structure
 
