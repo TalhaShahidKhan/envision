@@ -19,10 +19,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Build Tailwind assets (falls back to SQLite during build if DATABASE_URL is missing)
-RUN SECRET_KEY=dummy-key-for-build python manage.py tailwind build
+RUN python manage.py tailwind build
 
 # Collect static files
-RUN SECRET_KEY=dummy-key-for-build python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput
 
 # Make start.sh executable
 RUN chmod +x /app/start.sh
