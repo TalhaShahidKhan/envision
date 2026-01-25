@@ -18,7 +18,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application
 COPY . .
 
+# Install npm dependencies for Tailwind
+WORKDIR /app/theme/static_src
+RUN npm install
+
 # Build Tailwind assets (falls back to SQLite during build if DATABASE_URL is missing)
+WORKDIR /app
 RUN python manage.py tailwind build
 
 # Collect static files

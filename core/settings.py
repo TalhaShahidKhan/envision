@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     "tailwind",
     "theme",
     "users",
+    "cloudinary_storage",
     "dj_cloudinary",
     "payments",
 ]
@@ -186,8 +187,10 @@ else:
 
 
 MEDIA_URL = "media/"
-
 MEDIA_ROOT = BASE_DIR / "media"
+
+if not DEBUG:
+    DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 
 AUTH_USER_MODEL = "users.CustomUser"
