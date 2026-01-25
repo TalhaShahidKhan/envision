@@ -121,9 +121,10 @@ if DEBUG:
         }
     }
 else:
+    # Use DATABASE_URL from environment, fallback to SQLite if not set (e.g. during build)
     DATABASES = {
         "default": dj_database_url.config(
-            default=str(env("DATABASE_URL")),
+            default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
             conn_max_age=600,
             conn_health_checks=True,
         )
