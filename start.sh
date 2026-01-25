@@ -11,6 +11,10 @@ python manage.py migrate
 echo "Ensuring superuser exists..."
 python manage.py create_superuser
 
+# Build Tailwind assets
+echo "Building Tailwind assets..."
+python manage.py tailwind build
+
 # Start Gunicorn
 echo "Starting Gunicorn..."
 exec gunicorn core.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 3 --timeout 120

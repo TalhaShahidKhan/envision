@@ -18,8 +18,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application
 COPY . .
 
-# Build Tailwind assets
-RUN python manage.py tailwind build
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
