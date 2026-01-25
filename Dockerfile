@@ -24,7 +24,7 @@ python manage.py migrate\n\
 python manage.py tailwind build\n\
 python manage.py collectstatic --noinput\n\
 python manage.py create_superuser\n\
-gunicorn upscale.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 120' > /app/start.sh
+gunicorn core.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 120' > /app/start.sh
 
 RUN chmod +x /app/start.sh
 
