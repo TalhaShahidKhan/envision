@@ -68,7 +68,7 @@ INSTALLED_APPS = [
 ]
 
 TAILWIND_APP_NAME = "theme"
-NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd" if DEBUG else "/usr/local/bin/npm"
+NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd" if DEBUG else "/usr/bin/npm"
 
 if DEBUG:
     INSTALLED_APPS += ["django_browser_reload"]
@@ -218,10 +218,16 @@ DJANGO_SUPERUSER_PASSWORD = env("DJANGO_SUPERUSER_PASSWORD")
 # Ensure CSRF works with your domain
 CSRF_TRUSTED_ORIGINS = [
     "https://scalify.up.railway.app",
-    "http://scalify.up.railway.app",  # Include HTTP version
-    "https://*.railway.app",  # Wildcard for all railway subdomains
+    "http://scalify.up.railway.app",
+    "https://*.railway.app",
     "http://*.railway.app",
 ]
+
+# Add Railway domain if present
+if env("RAILWAY_PUBLIC_DOMAIN", default=None):
+    railway_domain = env("RAILWAY_PUBLIC_DOMAIN")
+    CSRF_TRUSTED_ORIGINS.append(f"https://{railway_domain}")
+    CSRF_TRUSTED_ORIGINS.append(f"http://{railway_domain}")
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
