@@ -55,6 +55,9 @@ if DEBUG:
     ALLOWED_HOSTS = ["*", "localhost", "127.0.0.1", "::1"]
 else:
     ALLOWED_HOSTS = env("ALLOWED_HOSTS", cast=list)
+    # Add Railway domain if present
+    if env("RAILWAY_PUBLIC_DOMAIN", default=None):
+        ALLOWED_HOSTS.append(env("RAILWAY_PUBLIC_DOMAIN"))
 
 
 # Application definition
