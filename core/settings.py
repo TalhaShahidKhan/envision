@@ -55,6 +55,7 @@ if DEBUG:
     ALLOWED_HOSTS = ["*", "localhost", "127.0.0.1", "::1"]
 else:
     ALLOWED_HOSTS = env("ALLOWED_HOSTS", cast=list)
+    ALLOWED_HOSTS.append(".vercel.app")
     # Add Railway domain if present
     if env("RAILWAY_PUBLIC_DOMAIN", default=None):
         ALLOWED_HOSTS.append(env("RAILWAY_PUBLIC_DOMAIN"))
@@ -235,6 +236,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://scalify.up.railway.app",
     "https://*.railway.app",
     "http://*.railway.app",
+    "https://*.vercel.app",
 ]
 
 # Add Railway domain if present
@@ -272,3 +274,5 @@ PADDLE_API_SECRET_KEY = env(
 PADDLE_ENVIRONMENT = env(
     "PADDLE_ENVIRONMENT"
 )  # You'll need to get this from Paddle dashboard
+
+NPM_BIN_PATH = "/usr/bin/npm"
