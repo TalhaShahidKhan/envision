@@ -11,7 +11,10 @@ build/
 develop-eggs/
 dist/
 !theme/static/css/dist/
+!theme/static/css/dist/*
 !staticfiles/
+!staticfiles/css/dist/
+!staticfiles/css/dist/*
 !staticfiles/**
 downloads/
 eggs/
